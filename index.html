@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="./index.js"></script>
+    <title>Gerador de Combinações - C(n,p)</title>
+  </head>
+  <body class="bg-dark" style="color: white">
+    <div class="container-sm">
+      <h1>Gerador de combinações</h1>
+      <form action="" name="gerar">
+        <div class="mb-3">
+          <label for="lista" class="form-label"
+            >Lista de elementos para combinar</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="lista"
+            name="lista"
+            aria-describedby="listaHelp"
+            placeholder="A,B,C,..."
+          />
+          <div class="form-text" id="listaHelp">
+            Entre o s elementos da lista separados por vírgula.
+          </div>
+          <label for="p" class="form-label"
+            >Quantidade de elementos a combinar da lista acima</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="p"
+            name="p"
+            aria-describedby="pHelp"
+          />
+          <div class="form-text" id="pHelp">
+            A quantidade informada deve ser menor do que o tamanho da lista
+          </div><br>
+
+            <button type="button"
+              class="btn btn-lg btn btn-outline-light"
+              onclick="Gerar(gerar.lista.value, gerar.p.value)"
+            >
+              Gerar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- Bootstrap JS-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
