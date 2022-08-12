@@ -11,51 +11,68 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <script src="./index.js"></script>
+    <script src="./functions.js"></script>
     <title>Gerador de Combinações - C(n,p)</title>
   </head>
-  <body class="bg-dark" style="color: white">
+  <body class="bg-dark" style="color: white; background-image: url(./images/pexels-adrien-olichon-2387793.jpg) ;">
     <div class="container-sm">
-      <h1>Gerador de combinações</h1>
-      <form action="" name="gerar">
-        <div class="mb-3">
-          <label for="lista" class="form-label"
+      <header>
+        <h1>Gerador de combinações</h1>
+      </header>
+      <section style="height: 90vh;">
+        <form action="" name="gerar" id="myForm">
+          <div class="mb-3">
+            <label for="lista" class="form-label"
             >Lista de elementos para combinar</label
-          >
-          <input
+            >
+            <input
             type="text"
             class="form-control"
             id="lista"
             name="lista"
             aria-describedby="listaHelp"
             placeholder="A,B,C,..."
-          />
-          <div class="form-text" id="listaHelp">
-            Entre o s elementos da lista separados por vírgula.
-          </div>
-          <label for="p" class="form-label"
-            >Quantidade de elementos a combinar da lista acima</label
-          >
-          <input
+            required
+            />
+            <div class="form-text" id="listaHelp">
+              Entre os elementos separados por vírgula.
+            </div>
+            <label for="p" class="form-label"
+            >Quantidade de elementos a combinar</label
+            >
+            <input
             type="text"
             class="form-control"
             id="p"
             name="p"
             aria-describedby="pHelp"
-          />
-          <div class="form-text" id="pHelp">
-            A quantidade informada deve ser menor do que o tamanho da lista
-          </div><br>
-
+            required
+            />
+            <div class="form-text" id="pHelp">
+              A quantidade deve ser menor do que o tamanho da lista
+            </div><br>
+            
             <button type="button"
-              class="btn btn-lg btn btn-outline-light"
-              onclick="Gerar(gerar.lista.value, gerar.p.value)"
+            class="btn btn-lg btn btn-outline-light"
+            onclick="generate(gerar.lista.value, gerar.p.value)"
             >
-              Gerar
-            </button>
+            Gerar
+          </button>
+        </div>
+        <div class="mb-3" id="resultados" style="display:none;">
+          <p id="paragraph">Combinações geradas</p>
+          <div style="height: 52vh; overflow: auto;">
+            <ol>
+              <div id="combinacoes"></div>
+            </ol>
           </div>
         </div>
-      </form>
+      </section>
+      <footer style="text-align: center ;">
+        <p>Desenvolvido por Renato F Rosa &copy; 2022</p>
+      </footer>
+      </div>
+    </form>
     </div>
     <!-- Bootstrap JS-->
     <script
