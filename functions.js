@@ -8,6 +8,7 @@ var result = [];
 var stackedComb = [];
 var currentComb;
 
+// recursive function to combine the elements
 function combine(position, n, p, id) {
   // return if length of currentComb reached the value of p
   if (currentComb.elements.length == p) {
@@ -18,6 +19,7 @@ function combine(position, n, p, id) {
   if (position == n || currentComb.elements.length == p) {
     // reached last position or number of elements == p
     if (currentComb.elements.length == p) {
+      // deep copy current combination in the result list
       result.push(JSON.parse(JSON.stringify(currentComb)));
     }
     return id;
@@ -27,12 +29,15 @@ function combine(position, n, p, id) {
     // stack currentComb
     id = createUUID();
     currentComb.id = id;
+    // save current combination in the stack
     stackedComb.push(JSON.parse(JSON.stringify(currentComb)));
     while (position + 1 < n) {
       // restore previous currentComb
       let aux = stackedComb.filter((comb) => {
         return comb.id === id;
       });
+      // update current combination with last stacked one
+      // use deep copy
       currentComb.id = aux[0].id;
       currentComb.elements = JSON.parse(JSON.stringify(aux[0].elements));
       position++;
@@ -41,6 +46,7 @@ function combine(position, n, p, id) {
   }
 }
 
+// main function to validate form inputs and manage the combination
 function generate(aux, p) {
   var f = document.getElementById("myForm");
   var msg = "";
@@ -51,6 +57,10 @@ function generate(aux, p) {
   var n = elementList.length;
   if (n < parseInt(p)) {
     msg = "Lista com tamanho insufiente para a combinação desejada!";
+  } else {
+    if (parseInt(n) > 10) {
+      msg = "informe no máximo 10 elementos na lista.";
+    }
   }
   if (msg != "") {
     alert(msg);
@@ -78,7 +88,7 @@ function generate(aux, p) {
       if (aux.length > 0) aux += ", ";
       aux += result[i].elements[k];
     }
-    linha += "<li>" + aux + "</li>";
+    linha += "<li>" + String(i + 1).padStart(3, "0") + " - " + aux + "</li>";
   }
   document.getElementById("combinacoes").innerHTML = linha;
   document.getElementById("resultados").style.display = "block";
@@ -86,6 +96,9 @@ function generate(aux, p) {
     "Combinações geradas - C(" + n + "," + p + ") = " + CNP(n, parseInt(p));
 }
 
+// recursive funcion to calculate the number of combination C(n,p)
+// C(n,p) = C(n-1,p) + C(n-1,n-1)
+// where C(m,m) = 1 and C(m,0) = 1
 function CNP(n, p) {
   if (n === p || p == 0) {
     return 1;
@@ -94,6 +107,7 @@ function CNP(n, p) {
   }
 }
 
+// pseudo guid generator
 function createUUID() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
     var r = (Math.random() * 16) | 0,
